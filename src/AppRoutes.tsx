@@ -1,7 +1,6 @@
 import {
   createBrowserRouter,
   RouterProvider,
-  Navigate,
   Link,
   RouteObject,
 } from 'react-router-dom'
@@ -10,13 +9,10 @@ import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6'
 
 import DefaultLayout from 'layouts/DefaultLayout'
 
-import ExamplePage from 'routes/example'
-import AnotherExamplePage from 'routes/another-example'
+import IndexPage from 'routes'
 
 export const pagePath = {
   index: '/',
-  example: '/example',
-  anotherExample: '/another-example',
 }
 
 type PagePathName = keyof typeof pagePath
@@ -24,15 +20,7 @@ type PagePathName = keyof typeof pagePath
 const allPageRoutes: Record<PagePathName, RouteObject> = {
   index: {
     index: true,
-    element: <Navigate to="/example" />,
-  },
-  example: {
-    path: pagePath.example,
-    element: <ExamplePage />,
-  },
-  anotherExample: {
-    path: pagePath.anotherExample,
-    element: <AnotherExamplePage />,
+    element: <IndexPage />,
   },
 }
 
