@@ -42,6 +42,9 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,md}": [
       "prettier --write"
+    ],
+    "playwright/**/*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write"
     ]
   }
 }
