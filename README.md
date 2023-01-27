@@ -4,6 +4,10 @@ The place for you to learn and try about [Playwright](https://playwright.dev/)
 
 This project use [vite-react-ts-boilerplate](https://github.com/ratchagarn/vite-react-ts-boilerplate) to initial project
 
+### API
+
+Our training ground use https://reqres.in/ as fake data with real API, see available request list in the website
+
 ### Useful Link
 
 - https://playwright.dev/docs/getting-started-vscode

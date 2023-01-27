@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.13",
+    "axios": "^1.2.5",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "postcss": "^8.4.21",

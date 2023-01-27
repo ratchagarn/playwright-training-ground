@@ -7,12 +7,16 @@ import {
 import { QueryParamProvider } from 'use-query-params'
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6'
 
+import users from 'services/api/users'
+
 import DefaultLayout from 'layouts/DefaultLayout'
 
 import IndexPage from 'routes'
+import UsersPage from 'routes/Users'
 
 export const pagePath = {
   index: '/',
+  users: '/users',
 }
 
 type PagePathName = keyof typeof pagePath
@@ -22,6 +26,15 @@ const allPageRoutes: Record<PagePathName, RouteObject> = {
     index: true,
     element: <IndexPage />,
   },
+  users: {
+    path: pagePath.users,
+    element: <UsersPage />,
+    loader: async () => {
+      const resp = await users.getUserList()
+
+      return resp.data
+    },
+  },
 }
 
 const router = createBrowserRouter([
@@ -29,10 +42,12 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootElement />,
     errorElement: (
-      <>
-        <h1>Page Not Found</h1>
-        <Link to={pagePath.index}>Back</Link>
-      </>
+      <div className="flex flex-col items-center justify-center h-screen gap-4">
+        <h1 className="text-xl font-bold">Page Not Found</h1>
+        <Link to={pagePath.index} className="underline text-blue-600">
+          Back
+        </Link>
+      </div>
     ),
     children: Object.keys(allPageRoutes).map(
       (name) => allPageRoutes[name as PagePathName]
