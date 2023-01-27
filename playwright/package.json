@@ -6,5 +6,9 @@
   "devDependencies": {
     "@playwright/test": "^1.30.0"
   },
-  "scripts": {}
+  "scripts": {
+    "test": "yarn playwright test",
+    "test:webkit": "yarn test --project=webkit",
+    "show-trace": "yarn playwright show-trace"
+  }
 }
