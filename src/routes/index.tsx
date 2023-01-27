@@ -1,5 +1,5 @@
 const IndexPage = () => {
-  return <h1>Index Page</h1>
+  return <h1 className="text-3xl font-bold underline">Index Page</h1>
 }
 
 export default IndexPage
