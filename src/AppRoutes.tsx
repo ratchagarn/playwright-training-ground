@@ -42,9 +42,9 @@ const router = createBrowserRouter([
     path: '/',
     element: <RootElement />,
     errorElement: (
-      <div className="flex flex-col items-center justify-center h-screen gap-4">
+      <div className="flex h-screen flex-col items-center justify-center gap-4">
         <h1 className="text-xl font-bold">Page Not Found</h1>
-        <Link to={pagePath.index} className="underline text-blue-600">
+        <Link to={pagePath.index} className="text-blue-600 underline">
           Back
         </Link>
       </div>

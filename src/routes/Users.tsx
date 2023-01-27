@@ -9,7 +9,7 @@ const UsersPage = () => {
     <>
       <h1 className="mb-4 text-xl font-bold">Users Page</h1>
 
-      <pre className="p-2 rounded-lg bg-gray-800 text-orange-300">
+      <pre className="rounded-lg bg-gray-800 p-2 text-orange-300">
         <code className="text-xs">{JSON.stringify(users, null, 2)}</code>
       </pre>
     </>

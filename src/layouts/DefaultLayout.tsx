@@ -21,7 +21,7 @@ const DefaultLayout = () => {
   )
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <header className="flex gap-4 bg-blue-600 p-4">
         {pageList.map((page) => (
           <NavLink
@@ -36,10 +36,10 @@ const DefaultLayout = () => {
         ))}
       </header>
 
-      <main className="p-4">
+      <main className="flex-1 bg-gray-50 p-4">
         <Outlet />
       </main>
-    </>
+    </div>
   )
 }
 
