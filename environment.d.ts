@@ -2,6 +2,6 @@
 
 declare namespace NodeJS {
   interface ProcessEnv {
-    readonly TEST_DIR: string
+    readonly PLAYWRIGHT_TEST_DIR: string
   }
 }
