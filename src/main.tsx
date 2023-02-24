@@ -4,6 +4,10 @@ import ReactDOM from 'react-dom/client'
 import 'index.css'
 import App from './App'
 
+import { worker } from './_mocks/browser'
+
+worker.start()
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <App />

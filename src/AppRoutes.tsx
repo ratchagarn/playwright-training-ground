@@ -7,12 +7,10 @@ import {
 import { QueryParamProvider } from 'use-query-params'
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6'
 
-import users from 'services/api/users'
-
 import DefaultLayout from 'layouts/DefaultLayout'
 
 import IndexPage from 'routes'
-import UsersPage from 'routes/Users'
+import UsersPage from 'routes/UsersPage'
 
 export const pagePath = {
   index: '/',
@@ -29,11 +27,6 @@ const allPageRoutes: Record<PagePathName, RouteObject> = {
   users: {
     path: pagePath.users,
     element: <UsersPage />,
-    loader: async () => {
-      const resp = await users.getUserList()
-
-      return resp.data
-    },
   },
 }
 

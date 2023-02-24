@@ -27,3 +27,4 @@ dist-ssr
 /playwright/.cache/
 
 tests
+public/mockServiceWorker.js

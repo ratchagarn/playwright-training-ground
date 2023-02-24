@@ -26,13 +26,8 @@ Our training ground use https://reqres.in/ as fake data with real API, see avail
 ## Setup
 
 1. `pnpm install` for install all dependencies
-2. Create `.env.local` at root directory (same place with `.env`)
-3. Copy this content below into your `.env.local`
-
-```
-PLAYWRIGHT_TEST_DIR=./tests-examples
-```
-
+2. Duplicate file `.env.example` and rename to `.env.local`
+3. npx msw init public/ --save
 4. Open your terminal then run `pnpm test`, all test should pass properly
 5. Create directory `tests` at root directory
 6. Update `.env.local`, change `PLAYWRIGHT_TEST_DIR` value to `./tests`
@@ -41,4 +36,4 @@ PLAYWRIGHT_TEST_DIR=./tests-examples
 
 ## Challenges
 
-- ???
+- Coming soon...
