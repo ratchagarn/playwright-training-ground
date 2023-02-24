@@ -1,8 +1,6 @@
 import { factory, primaryKey } from '@mswjs/data'
 import { faker } from '@faker-js/faker'
 
-import type { InferModelType } from './types'
-
 const db = factory({
   ['api/user']: {
     id: primaryKey(faker.datatype.uuid),
@@ -16,4 +14,4 @@ userModel.create({
   name: 'Test 1',
 })
 
-export type IUser = InferModelType<typeof userModel>
+export type IUser = MSWDataInferModelType<typeof userModel>

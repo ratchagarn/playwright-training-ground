@@ -5,8 +5,7 @@
   "author": "Ratchagarn Naewbuntad (https://github.com/ratchagarn)",
   "type": "module",
   "scripts": {
-    "client": "vite",
-    "server": "node server.js",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "yarn playwright test"
