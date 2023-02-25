@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
 
@@ -14,6 +15,7 @@ import { getRoutePath } from 'AppRoutes'
 import { usersAPI } from 'api/usersAPI'
 
 const UsersPage = () => {
+  const [deletingID, setDeletingID] = useState<string>()
   const { toast, toastConfirm } = useCustomToast()
 
   const query = useQuery({
@@ -53,9 +55,11 @@ const UsersPage = () => {
                 title: 'Do you want to delete?',
                 onOK: () => {
                   deleteUser.mutate(id)
+                  setDeletingID(id)
                 },
               })
             }}
+            deletingID={deletingID}
           />
         }
       />

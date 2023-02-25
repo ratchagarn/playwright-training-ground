@@ -9,14 +9,10 @@ import type { User } from 'api/usersAPI'
 interface TableListUserProps {
   data?: User[]
   onDelete?: (id: string) => void
-  deleteLoading?: boolean
+  deletingID?: User['id']
 }
 
-const TableListUser = ({
-  data,
-  onDelete,
-  deleteLoading = false,
-}: TableListUserProps) => {
+const TableListUser = ({ data, onDelete, deletingID }: TableListUserProps) => {
   const columns: TableProps<User>['columns'] = [
     {
       key: 'name',
@@ -42,7 +38,7 @@ const TableListUser = ({
       width: 60,
       render: ({ id }) => (
         <Link to={getRoutePath('usersUpdatePage', { params: { id } })}>
-          <Button>✎</Button>
+          <Button disabled={deletingID === id}>✎</Button>
         </Link>
       ),
     },
@@ -54,7 +50,7 @@ const TableListUser = ({
       render: (record) => (
         <Button
           type="danger"
-          loading={deleteLoading}
+          loading={deletingID === record.id}
           onClick={() => onDelete?.(record.id)}
         >
           ✕
