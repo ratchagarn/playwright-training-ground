@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-interface TableDataListColumn<T extends any> {
+interface TableColumn<T extends any> {
   key: string
   title: string
   render(record: T): ReactNode
@@ -8,17 +8,17 @@ interface TableDataListColumn<T extends any> {
   align?: 'left' | 'center' | 'right'
 }
 
-export interface TableDataListProps<T extends any> {
+export interface TableProps<T extends any> {
   dataSource?: T[]
   rowKey?: string
-  columns: TableDataListColumn<T>[]
+  columns: TableColumn<T>[]
 }
 
-const TableDataList = <T extends { id: string }>({
+export const Table = <T extends { id: string }>({
   dataSource = [],
   rowKey = 'id',
   columns,
-}: TableDataListProps<T>) => {
+}: TableProps<T>) => {
   return (
     <div className="overflow-hidden rounded-md shadow-sm shadow-gray-200">
       <table className="w-full text-sm">
@@ -67,5 +67,3 @@ const TableDataList = <T extends { id: string }>({
     </div>
   )
 }
-
-export default TableDataList

@@ -4,16 +4,14 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import PageTitle from 'components/PageTitle'
 import ActionBar from 'components/ActionBar'
 import Loading from 'components/Loading'
-import TableDataList, {
-  type TableDataListProps,
-} from 'components/TableDataList'
+import TableUserList from 'components/TableUserList'
 import { Button } from 'components/Elements'
 
 import useCustomToast from 'hooks/useCustomToast'
 
 import { getRoutePath } from 'AppRoutes'
 
-import { usersAPI, type User } from 'api/usersAPI'
+import { usersAPI } from 'api/usersAPI'
 
 const UsersPage = () => {
   const { toast, toastConfirm } = useCustomToast()
@@ -33,54 +31,6 @@ const UsersPage = () => {
     },
   })
 
-  const columns: TableDataListProps<User>['columns'] = [
-    {
-      key: 'name',
-      title: 'Name',
-      render: (record) => record.name,
-    },
-    {
-      key: 'postition',
-      title: 'Position',
-      width: '25%',
-      render: (record) => record.position,
-    },
-    {
-      key: 'email',
-      title: 'Email',
-      width: '25%',
-      render: (record) => record.email,
-    },
-    {
-      key: 'phone',
-      title: 'Phone',
-      width: '25%',
-      render: (record) => record.phone,
-    },
-    {
-      key: 'delete',
-      title: 'Delete',
-      align: 'center',
-      width: 60,
-      render: (record) => (
-        <Button
-          type="danger"
-          loading={deleteUser.isLoading}
-          onClick={() => {
-            toastConfirm({
-              title: 'Do you want to delete?',
-              onOK: () => {
-                deleteUser.mutate(record.id)
-              },
-            })
-          }}
-        >
-          ✕
-        </Button>
-      ),
-    },
-  ]
-
   return (
     <>
       <PageTitle>Users Page</PageTitle>
@@ -96,7 +46,17 @@ const UsersPage = () => {
       {query.isLoading ? (
         <Loading />
       ) : (
-        <TableDataList dataSource={query.data} columns={columns} />
+        <TableUserList
+          data={query.data}
+          onDelete={(id) => {
+            toastConfirm({
+              title: 'Do you want to delete?',
+              onOK: () => {
+                deleteUser.mutate(id)
+              },
+            })
+          }}
+        />
       )}
     </>
   )
