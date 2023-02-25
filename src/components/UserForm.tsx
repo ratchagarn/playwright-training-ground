@@ -17,9 +17,8 @@ const messages = {
 }
 const validateSchema = z.object({
   name: z.string().min(1, { message: messages.required }),
-  position: z.string().min(1, { message: messages.required }),
+  jobTitle: z.string().min(1, { message: messages.required }),
   email: z.string().min(1, { message: messages.required }).email(),
-  phone: z.string().min(1, { message: messages.required }),
 })
 
 const UserForm = ({ onSubmit, loading }: UserFormProps) => {
@@ -43,10 +42,10 @@ const UserForm = ({ onSubmit, loading }: UserFormProps) => {
 
       <FormItem
         label="Position"
-        hasError={errors.position != null}
-        help={errors.position?.message}
+        hasError={errors.jobTitle != null}
+        help={errors.jobTitle?.message}
       >
-        <Input {...register('position')} />
+        <Input {...register('jobTitle')} />
       </FormItem>
 
       <FormItem
@@ -55,14 +54,6 @@ const UserForm = ({ onSubmit, loading }: UserFormProps) => {
         help={errors.email?.message}
       >
         <Input {...register('email')} />
-      </FormItem>
-
-      <FormItem
-        label="Phone"
-        hasError={errors.phone != null}
-        help={errors.phone?.message}
-      >
-        <Input {...register('phone')} />
       </FormItem>
 
       <Button type="primary" htmlType="submit" loading={loading}>

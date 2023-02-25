@@ -17,13 +17,13 @@ const TableListUser = ({
     {
       key: 'name',
       title: 'Name',
+      width: '25%',
       render: (record) => record.name,
     },
     {
-      key: 'postition',
-      title: 'Position',
-      width: '25%',
-      render: (record) => record.position,
+      key: 'jobTitle',
+      title: 'jobTitle',
+      render: (record) => record.jobTitle,
     },
     {
       key: 'email',
@@ -32,10 +32,13 @@ const TableListUser = ({
       render: (record) => record.email,
     },
     {
-      key: 'phone',
-      title: 'Phone',
-      width: '25%',
-      render: (record) => record.phone,
+      key: 'edit',
+      title: 'Edit',
+      align: 'center',
+      width: 60,
+      render: (record) => (
+        <Button onClick={() => onDelete?.(record.id)}>✎</Button>
+      ),
     },
     {
       key: 'delete',
