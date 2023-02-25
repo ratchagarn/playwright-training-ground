@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 import PageTitle from 'components/PageTitle'
 import ActionBar from 'components/ActionBar'
 import Loading from 'components/Loading'
-import TableUserList from 'components/TableUserList'
+import TableListUser from 'components/TableListUser'
 import { Button } from 'components/Elements'
 
 import useCustomToast from 'hooks/useCustomToast'
@@ -46,7 +46,7 @@ const UsersPage = () => {
       {query.isLoading ? (
         <Loading />
       ) : (
-        <TableUserList
+        <TableListUser
           data={query.data}
           onDelete={(id) => {
             toastConfirm({

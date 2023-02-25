@@ -2,17 +2,17 @@ import { Button, Table, type TableProps } from 'components/Elements'
 
 import type { User } from 'api/usersAPI'
 
-interface TableUserListProps {
+interface TableListUserProps {
   data?: User[]
   onDelete?: (id: string) => void
   deleteLoading?: boolean
 }
 
-const TableUserList = ({
+const TableListUser = ({
   data,
   onDelete,
   deleteLoading = false,
-}: TableUserListProps) => {
+}: TableListUserProps) => {
   const columns: TableProps<User>['columns'] = [
     {
       key: 'name',
@@ -57,4 +57,4 @@ const TableUserList = ({
   return <Table dataSource={data} columns={columns} />
 }
 
-export default TableUserList
+export default TableListUser
