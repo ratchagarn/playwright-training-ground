@@ -1,4 +1,8 @@
+import { Link } from 'react-router-dom'
+
 import { Button, Table, type TableProps } from 'components/Elements'
+
+import { getRoutePath } from 'AppRoutes'
 
 import type { User } from 'api/usersAPI'
 
@@ -22,7 +26,7 @@ const TableListUser = ({
     },
     {
       key: 'jobTitle',
-      title: 'jobTitle',
+      title: 'Job Title',
       render: (record) => record.jobTitle,
     },
     {
@@ -36,8 +40,10 @@ const TableListUser = ({
       title: 'Edit',
       align: 'center',
       width: 60,
-      render: (record) => (
-        <Button onClick={() => onDelete?.(record.id)}>✎</Button>
+      render: ({ id }) => (
+        <Link to={getRoutePath('usersUpdatePage', { params: { id } })}>
+          <Button>✎</Button>
+        </Link>
       ),
     },
     {

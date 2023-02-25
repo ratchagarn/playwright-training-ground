@@ -9,7 +9,9 @@ type FormValues = User
 
 interface UserFormProps {
   onSubmit: SubmitHandler<FormValues>
+  initialValue?: FormValues
   loading?: boolean
+  disabled?: boolean
 }
 
 const messages = {
@@ -21,13 +23,19 @@ const validateSchema = z.object({
   email: z.string().min(1, { message: messages.required }).email(),
 })
 
-const UserForm = ({ onSubmit, loading }: UserFormProps) => {
+const UserForm = ({
+  initialValue,
+  onSubmit,
+  loading = false,
+  disabled = false,
+}: UserFormProps) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(validateSchema),
+    values: initialValue,
   })
 
   return (
@@ -56,7 +64,12 @@ const UserForm = ({ onSubmit, loading }: UserFormProps) => {
         <Input {...register('email')} />
       </FormItem>
 
-      <Button type="primary" htmlType="submit" loading={loading}>
+      <Button
+        type="primary"
+        htmlType="submit"
+        loading={loading}
+        disabled={disabled}
+      >
         Submit
       </Button>
     </Form>

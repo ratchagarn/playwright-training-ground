@@ -1,4 +1,7 @@
+export { Alert } from './Alert'
 export { Button } from './Button'
 export { Form, FormItem } from './Form'
+export { IconLoading } from './IconLoading'
 export { Input } from './Input'
+export { Loading } from './Loading'
 export { Table, type TableProps } from './Table'

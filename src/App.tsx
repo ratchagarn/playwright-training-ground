@@ -4,8 +4,14 @@ import CustomToast from 'components/CustomToast'
 
 import AppRoutes from './AppRoutes'
 
-// Create a client
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+    },
+  },
+})
 
 const App = () => {
   return (

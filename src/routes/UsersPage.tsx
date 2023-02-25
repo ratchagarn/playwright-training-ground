@@ -3,7 +3,7 @@ import { useQuery, useMutation } from '@tanstack/react-query'
 
 import PageTitle from 'components/PageTitle'
 import ActionBar from 'components/ActionBar'
-import Loading from 'components/Loading'
+import RenderByRequestStatus from 'components/RenderByRequestStatus'
 import TableListUser from 'components/TableListUser'
 import { Button } from 'components/Elements'
 
@@ -43,21 +43,22 @@ const UsersPage = () => {
         }
       />
 
-      {query.isLoading ? (
-        <Loading />
-      ) : (
-        <TableListUser
-          data={query.data}
-          onDelete={(id) => {
-            toastConfirm({
-              title: 'Do you want to delete?',
-              onOK: () => {
-                deleteUser.mutate(id)
-              },
-            })
-          }}
-        />
-      )}
+      <RenderByRequestStatus
+        status={query.status}
+        onSuccess={
+          <TableListUser
+            data={query.data}
+            onDelete={(id) => {
+              toastConfirm({
+                title: 'Do you want to delete?',
+                onOK: () => {
+                  deleteUser.mutate(id)
+                },
+              })
+            }}
+          />
+        }
+      />
     </>
   )
 }

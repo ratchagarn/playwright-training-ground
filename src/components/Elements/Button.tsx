@@ -1,6 +1,8 @@
 import type { ReactNode, HTMLProps, ButtonHTMLAttributes } from 'react'
 import classNames from 'classnames'
 
+import { IconLoading } from './IconLoading'
+
 type ButtonType = 'default' | 'primary' | 'danger'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
@@ -40,13 +42,7 @@ export const Button = ({
       className={`rounded transition hover:opacity-75 ${modifyClassName}`}
       disabled={disabled || loading}
     >
-      {loading ? (
-        <div className="animate__animated animate__faster animate__rotateOut animate__infinite">
-          ↻
-        </div>
-      ) : (
-        children
-      )}
+      {loading ? <IconLoading /> : children}
     </button>
   )
 }

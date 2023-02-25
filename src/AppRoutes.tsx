@@ -15,13 +15,13 @@ import DefaultLayout from 'layouts/DefaultLayout'
 import IndexPage from 'routes'
 import UsersPage from 'routes/UsersPage'
 import UserCreatePage from 'routes/UsersCreatePage'
-import UsersByIDPage from 'routes/UsersByIDPage'
+import UsersUpdatePage from 'routes/UsersUpdatePage'
 
 export const pagePath = {
   index: '/',
   users: '/users',
   usersCreatePage: '/users/create',
-  usersByID: '/users/:id',
+  usersUpdatePage: '/users/:id',
 }
 
 type PagePathName = keyof typeof pagePath
@@ -41,9 +41,9 @@ const AppRoutes = () => {
         path: pagePath.usersCreatePage,
         element: <UserCreatePage />,
       },
-      usersByID: {
-        path: pagePath.usersByID,
-        element: <UsersByIDPage />,
+      usersUpdatePage: {
+        path: pagePath.usersUpdatePage,
+        element: <UsersUpdatePage />,
       },
     }),
     []
@@ -96,7 +96,7 @@ export const getRoutePath = (
   const { params, query } = options ?? {}
   const qs = query ? queryString.stringify(query) : null
 
-  const destination = generatePath(pagePath[key], { params })
+  const destination = generatePath(pagePath[key], params)
 
   return qs ? `${destination}?${qs}` : destination
 }
