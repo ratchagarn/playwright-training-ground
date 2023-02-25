@@ -1,17 +1,18 @@
-import request from './index'
+import request, { wait, withWait } from './index'
 
 import type { User } from '_mocks/model/userModel'
 
 export { User }
 
 export const usersAPI = {
-  create: (data: User) => request.post('/api/users', data),
+  create: (data: User) => withWait<User>(request.post('/api/users', data)),
 
-  readAll: () => request.get<User[]>('/api/users').then((resp) => resp.data),
-  readByID: (id: string) =>
-    request.get<User>(`/api/users/${id}`).then((resp) => resp.data),
+  readAll: () => withWait<User[]>(request.get('/api/users')),
+  readByID: (id: string) => withWait<User>(request.get(`/api/users/${id}`)),
 
-  updateByID: (data: User) => request.put(`/api/users/${data.id}`, data),
+  updateByID: (data: User) =>
+    withWait<User>(request.put(`/api/users/${data.id}`, data)),
 
-  deleteByID: (id: string) => request.delete(`/api/users/${id}`),
+  deleteByID: (id: string) =>
+    withWait<User>(request.delete(`/api/users/${id}`)),
 }
