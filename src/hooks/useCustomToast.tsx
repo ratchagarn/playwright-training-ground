@@ -64,10 +64,15 @@ const Confirm = ({ title, onOK, onCancel }: ConfirmProps) => {
       </h3>
 
       <div className="flex justify-center gap-4">
-        <Button type="danger" onClick={onCancel} style={{ width: 100 }}>
+        <Button
+          type="danger"
+          size="lg"
+          onClick={onCancel}
+          style={{ width: 100 }}
+        >
           CANCEL
         </Button>
-        <Button type="primary" onClick={onOK} style={{ width: 100 }}>
+        <Button type="primary" size="lg" onClick={onOK} style={{ width: 100 }}>
           OK
         </Button>
       </div>

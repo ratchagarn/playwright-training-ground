@@ -46,6 +46,7 @@ const TableDataList = <T extends { id: string }>({
           ) : (
             dataSource.map((item) => (
               <tr
+                // TODO: Remove as `id`
                 key={item[rowKey as 'id']}
                 className="transition-all even:bg-gray-100 hover:bg-blue-100"
               >

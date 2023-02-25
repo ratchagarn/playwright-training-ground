@@ -9,23 +9,21 @@ const customTransition = cssTransition({
   appendPosition: false,
 })
 
-const CustomToast = () => {
-  return (
-    <ToastContainer
-      position="top-center"
-      autoClose={1000}
-      limit={3}
-      hideProgressBar={true}
-      newestOnTop={false}
-      closeOnClick
-      rtl={false}
-      pauseOnFocusLoss
-      draggable={false}
-      pauseOnHover
-      theme="light"
-      transition={customTransition}
-    />
-  )
-}
+const CustomToast = () => (
+  <ToastContainer
+    position="top-center"
+    autoClose={1000}
+    limit={3}
+    hideProgressBar={true}
+    newestOnTop={false}
+    closeOnClick
+    rtl={false}
+    pauseOnFocusLoss
+    draggable={false}
+    pauseOnHover
+    theme="light"
+    transition={customTransition}
+  />
+)
 
 export default CustomToast

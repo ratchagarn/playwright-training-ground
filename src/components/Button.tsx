@@ -2,10 +2,12 @@ import type { ReactNode, HTMLProps, ButtonHTMLAttributes } from 'react'
 import classNames from 'classnames'
 
 type ButtonType = 'default' | 'primary' | 'danger'
+type ButtonSize = 'sm' | 'md' | 'lg'
 
-interface ButtonProps extends HTMLProps<HTMLButtonElement> {
+interface ButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'> {
   type?: ButtonType
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
+  size?: ButtonSize
   loading?: boolean
   children?: ReactNode
 }
@@ -13,6 +15,7 @@ interface ButtonProps extends HTMLProps<HTMLButtonElement> {
 export const Button = ({
   type = 'default',
   htmlType,
+  size = 'md',
   className,
   disabled = false,
   loading = false,
@@ -25,13 +28,16 @@ export const Button = ({
     'bg-red-500 text-white': !disabled && type === 'danger',
     'bg-gray-400 text-gray-300 opacity-50': disabled,
     'opacity-75 pointer-events-none': loading,
+    'px-2 py-1  text-xs': size === 'sm',
+    'px-3 py-1 text-md': size === 'md',
+    'px-4 py-2 text-md': size === 'lg',
   })
 
   return (
     <button
       {...props}
       type={htmlType}
-      className={`rounded py-2 px-4 transition hover:opacity-75 ${modifyClassName}`}
+      className={`rounded transition hover:opacity-75 ${modifyClassName}`}
       disabled={disabled || loading}
     >
       {loading ? (
