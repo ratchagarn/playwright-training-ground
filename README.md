@@ -21,7 +21,11 @@ This project use [vite-react-ts-boilerplate](https://github.com/ratchagarn/vite-
 
 ## API
 
-Our training ground use https://reqres.in/ as fake data with real API, see available request list in the website
+This project use [mswjs/msw](https://mswjs.io/) as mocking server API and use [mswjs/data](https://github.com/mswjs/data) as data modeling
+
+## Data Generate
+
+THis project use [fakerjs](https://fakerjs.dev/api/) as data generate
 
 ## Setup
 

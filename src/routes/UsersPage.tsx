@@ -1,6 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 
-import users from 'api/users'
+import PageTitle from 'components/PageTitle'
+import Loading from 'components/Loading'
+import TableDataList, {
+  type TableDataListProps,
+} from 'components/TableDataList'
+
+import users, { type User } from 'api/users'
 
 const UsersPage = () => {
   const query = useQuery({
@@ -8,20 +14,37 @@ const UsersPage = () => {
     queryFn: users.getUserList,
   })
 
+  const columns: TableDataListProps<User>['columns'] = [
+    {
+      key: 'name',
+      title: 'Name',
+      render: (record) => record.name,
+    },
+    {
+      key: 'postition',
+      title: 'Position',
+      render: (record) => record.position,
+    },
+    {
+      key: 'email',
+      title: 'Email',
+      render: (record) => record.email,
+    },
+    {
+      key: 'phone',
+      title: 'Phone',
+      render: (record) => record.phone,
+    },
+  ]
+
   return (
     <>
-      <h1 className="mb-4 text-xl font-bold">Users Page</h1>
+      <PageTitle>Users Page</PageTitle>
 
       {query.isLoading ? (
-        <div>Loading...</div>
+        <Loading />
       ) : (
-        <pre className="rounded-lg bg-gray-800 p-2 text-orange-300">
-          {query.data?.data.map((item) => (
-            <code key={item.id} className="text-xs">
-              {JSON.stringify(item, null, 2)}
-            </code>
-          ))}
-        </pre>
+        <TableDataList dataSource={query.data} columns={columns} />
       )}
     </>
   )
