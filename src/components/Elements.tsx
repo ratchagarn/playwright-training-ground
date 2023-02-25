@@ -1,3 +1,3 @@
 export { Button } from './Button'
-export { Form } from './Form'
+export { Form, FormItem } from './Form'
 export { Input } from './Input'

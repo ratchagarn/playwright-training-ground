@@ -2,19 +2,25 @@ import {
   createBrowserRouter,
   RouterProvider,
   Link,
-  RouteObject,
+  generatePath,
+  type RouteObject,
 } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params'
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6'
+import queryString from 'query-string'
 
 import DefaultLayout from 'layouts/DefaultLayout'
 
 import IndexPage from 'routes'
 import UsersPage from 'routes/UsersPage'
+import UserCreatePage from 'routes/UsersCreatePage'
+import UsersByIDPage from 'routes/UsersByIDPage'
 
 export const pagePath = {
   index: '/',
   users: '/users',
+  usersCreatePage: '/users/create',
+  usersByID: '/users/:id',
 }
 
 type PagePathName = keyof typeof pagePath
@@ -27,6 +33,14 @@ const allPageRoutes: Record<PagePathName, RouteObject> = {
   users: {
     path: pagePath.users,
     element: <UsersPage />,
+  },
+  usersCreatePage: {
+    path: pagePath.usersCreatePage,
+    element: <UserCreatePage />,
+  },
+  usersByID: {
+    path: pagePath.usersByID,
+    element: <UsersByIDPage />,
   },
 }
 
@@ -60,4 +74,21 @@ function RootElement() {
       <DefaultLayout />
     </QueryParamProvider>
   )
+}
+
+interface GetRoutePathOptions {
+  params?: Record<string, string | number>
+  query?: Record<string, string | number | string[] | number[]>
+}
+
+export const getRoutePath = (
+  key: PagePathName,
+  options?: GetRoutePathOptions
+) => {
+  const { params, query } = options ?? {}
+  const qs = query ? queryString.stringify(query) : null
+
+  const destination = generatePath(pagePath[key], { params })
+
+  return qs ? `${destination}?${qs}` : destination
 }

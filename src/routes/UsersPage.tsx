@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 
 import PageTitle from 'components/PageTitle'
@@ -6,8 +7,9 @@ import Loading from 'components/Loading'
 import TableDataList, {
   type TableDataListProps,
 } from 'components/TableDataList'
-
 import { Button } from 'components/Elements'
+
+import { getRoutePath } from 'AppRoutes'
 
 import users, { type User } from 'api/users'
 
@@ -48,7 +50,13 @@ const UsersPage = () => {
     <>
       <PageTitle>Users Page</PageTitle>
 
-      <ActionBar extra={<Button type="primary">Create New User</Button>} />
+      <ActionBar
+        extra={
+          <Link to={getRoutePath('usersCreatePage')}>
+            <Button type="primary">Create New User</Button>
+          </Link>
+        }
+      />
 
       {query.isLoading ? (
         <Loading />

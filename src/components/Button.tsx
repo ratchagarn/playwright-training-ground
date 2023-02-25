@@ -23,7 +23,7 @@ export const Button = ({
   return (
     <button
       {...props}
-      className={`rounded bg-gray-200 py-1 px-4 transition hover:opacity-75 ${acturalClassName}`}
+      className={`rounded bg-gray-200 py-2 px-4 transition hover:opacity-75 ${acturalClassName}`}
     >
       {children}
     </button>
