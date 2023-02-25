@@ -4,8 +4,8 @@ import 'animate.css'
 
 // https://fkhadra.github.io/react-toastify/api/css-transition
 const customTransition = cssTransition({
-  enter: 'animate__animated animate__fadeInDown',
-  exit: 'animate__animated animate__fadeOutUp',
+  enter: 'animate__animated animate__super_faster animate__fadeInDown',
+  exit: 'animate__animated animate__super_faster animate__fadeOutUp',
   appendPosition: false,
 })
 
@@ -13,9 +13,9 @@ const CustomToast = () => {
   return (
     <ToastContainer
       position="top-center"
-      autoClose={false}
+      autoClose={1000}
       limit={3}
-      hideProgressBar={false}
+      hideProgressBar={true}
       newestOnTop={false}
       closeOnClick
       rtl={false}

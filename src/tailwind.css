@@ -2,6 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
+.animate__super_faster {
   --animate-duration: 200ms;
 }

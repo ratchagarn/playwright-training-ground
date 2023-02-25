@@ -14,12 +14,12 @@ const UsersCreatePage = () => {
   const navigate = useNavigate()
   const { toast } = useCustomToast()
 
-  const createUser = useMutation(usersAPI.createUser, {
+  const createUser = useMutation(usersAPI.create, {
     onError() {
       toast.error('Cannot create user')
     },
     onSuccess() {
-      toast.success('Create user sucess')
+      toast.success('Create user succeed')
       navigate(getRoutePath('users'))
     },
   })
@@ -32,6 +32,7 @@ const UsersCreatePage = () => {
         onSubmit={(data) => {
           createUser.mutate(data)
         }}
+        loading={createUser.isLoading}
       />
     </>
   )

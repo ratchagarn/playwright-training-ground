@@ -5,7 +5,9 @@ import type { User } from '_mocks/model/userModel'
 export { User }
 
 export const usersAPI = {
-  getUserList: () =>
-    request.get<User[]>('/api/users').then((resp) => resp.data),
-  createUser: (data: User) => request.post('/api/users', data),
+  getAll: () => request.get<User[]>('/api/users').then((resp) => resp.data),
+
+  create: (data: User) => request.post('/api/users', data),
+
+  deleteByID: (id: string) => request.delete(`/api/users/${id}`),
 }

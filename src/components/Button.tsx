@@ -34,7 +34,13 @@ export const Button = ({
       className={`rounded py-2 px-4 transition hover:opacity-75 ${modifyClassName}`}
       disabled={disabled || loading}
     >
-      {loading ? 'Loading...' : children}
+      {loading ? (
+        <div className="animate__animated animate__faster animate__rotateOut animate__infinite">
+          ↻
+        </div>
+      ) : (
+        children
+      )}
     </button>
   )
 }
