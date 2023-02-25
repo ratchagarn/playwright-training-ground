@@ -4,7 +4,7 @@ interface TableDataListColumn<T extends any> {
   key: string
   title: string
   render(record: T): ReactNode
-  width?: number
+  width?: number | string
   align?: 'left' | 'center' | 'right'
 }
 
