@@ -4,9 +4,8 @@ import type { User } from '_mocks/model/userModel'
 
 export { User }
 
-const users = {
+export const usersAPI = {
   getUserList: () =>
     request.get<User[]>('/api/users').then((resp) => resp.data),
+  createUser: (data: User) => request.post('/api/users', data),
 }
-
-export default users

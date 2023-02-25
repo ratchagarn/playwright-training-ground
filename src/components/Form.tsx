@@ -21,20 +21,24 @@ interface FormItemProps {
 export const FormItem = ({
   label,
   help,
-  hasError = false,
+  hasError = true,
   children,
-}: FormItemProps) => (
-  <div className="mb-6">
-    {label ? <label className="block font-medium">{label}</label> : null}
-    {children}
-    {help ? (
-      <div
-        className={classNames('mt-1 text-sm text-gray-400', {
-          'text-red-400': hasError,
-        })}
-      >
-        {help}
-      </div>
-    ) : null}
-  </div>
-)
+}: FormItemProps) => {
+  const childClassName = classNames('mt-1', {
+    'text-red-400 [&>*]:border-red-400': hasError,
+  })
+  const helpClassName = classNames('text-sm', {
+    'text-gray-400': !hasError,
+    'text-red-400': hasError,
+  })
+
+  return (
+    <div className="mb-4">
+      {label ? (
+        <label className="block font-medium text-gray-600">{label}</label>
+      ) : null}
+      <div className={childClassName}>{children}</div>
+      {help ? <div className={helpClassName}>{help}</div> : null}
+    </div>
+  )
+}

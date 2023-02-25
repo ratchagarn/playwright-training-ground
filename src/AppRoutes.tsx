@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -25,44 +26,51 @@ export const pagePath = {
 
 type PagePathName = keyof typeof pagePath
 
-const allPageRoutes: Record<PagePathName, RouteObject> = {
-  index: {
-    index: true,
-    element: <IndexPage />,
-  },
-  users: {
-    path: pagePath.users,
-    element: <UsersPage />,
-  },
-  usersCreatePage: {
-    path: pagePath.usersCreatePage,
-    element: <UserCreatePage />,
-  },
-  usersByID: {
-    path: pagePath.usersByID,
-    element: <UsersByIDPage />,
-  },
-}
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootElement />,
-    errorElement: (
-      <div className="flex h-screen flex-col items-center justify-center gap-4">
-        <h1 className="text-xl font-bold">Page Not Found</h1>
-        <Link to={pagePath.index} className="text-blue-600 underline">
-          Back
-        </Link>
-      </div>
-    ),
-    children: Object.keys(allPageRoutes).map(
-      (name) => allPageRoutes[name as PagePathName]
-    ),
-  },
-])
-
 const AppRoutes = () => {
+  const allPageRoutes: Record<PagePathName, RouteObject> = useMemo(
+    () => ({
+      index: {
+        index: true,
+        element: <IndexPage />,
+      },
+      users: {
+        path: pagePath.users,
+        element: <UsersPage />,
+      },
+      usersCreatePage: {
+        path: pagePath.usersCreatePage,
+        element: <UserCreatePage />,
+      },
+      usersByID: {
+        path: pagePath.usersByID,
+        element: <UsersByIDPage />,
+      },
+    }),
+    []
+  )
+
+  const router = useMemo(
+    () =>
+      createBrowserRouter([
+        {
+          path: '/',
+          element: <RootElement />,
+          errorElement: (
+            <div className="flex h-screen flex-col items-center justify-center gap-4">
+              <h1 className="text-xl font-bold">Page Not Found</h1>
+              <Link to={pagePath.index} className="text-blue-600 underline">
+                Back
+              </Link>
+            </div>
+          ),
+          children: Object.keys(allPageRoutes).map(
+            (name) => allPageRoutes[name as PagePathName]
+          ),
+        },
+      ]),
+    []
+  )
+
   return <RouterProvider router={router} />
 }
 

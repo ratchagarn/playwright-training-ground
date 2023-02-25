@@ -11,12 +11,12 @@ import { Button } from 'components/Elements'
 
 import { getRoutePath } from 'AppRoutes'
 
-import users, { type User } from 'api/users'
+import { usersAPI, type User } from 'api/usersAPI'
 
 const UsersPage = () => {
   const query = useQuery({
     queryKey: ['getUserList'],
-    queryFn: users.getUserList,
+    queryFn: usersAPI.getUserList,
   })
 
   const columns: TableDataListProps<User>['columns'] = [
