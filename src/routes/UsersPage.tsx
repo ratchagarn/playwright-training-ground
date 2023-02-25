@@ -18,7 +18,7 @@ const UsersPage = () => {
 
   const query = useQuery({
     queryKey: ['getUserList'],
-    queryFn: usersAPI.getAll,
+    queryFn: usersAPI.readAll,
   })
 
   const deleteUser = useMutation(usersAPI.deleteByID, {

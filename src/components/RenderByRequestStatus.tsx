@@ -13,24 +13,24 @@ interface RenderByRequestStatusProps {
 const RenderByRequestStatus = ({
   status,
   errorMessage,
-  onError = null,
-  onSuccess = null,
-  onLoading = null,
+  onError,
+  onSuccess,
+  onLoading,
 }: RenderByRequestStatusProps) => {
   switch (status) {
     case 'error':
-      return onError ? (
-        onError
-      ) : (
+      return onError === undefined || errorMessage ? (
         <Alert
           type="error"
           message={errorMessage ? errorMessage : 'Cannot get data'}
         />
+      ) : (
+        onError
       )
     case 'success':
-      return onSuccess
+      return onSuccess ?? null
     default:
-      return onLoading ? onLoading : <Loading />
+      return onLoading === undefined ? <Loading /> : onLoading
   }
 }
 

@@ -28,7 +28,7 @@ export const Button = ({
     'bg-gray-200': !disabled && type === 'default',
     'bg-blue-500 text-white': !disabled && type === 'primary',
     'bg-red-500 text-white': !disabled && type === 'danger',
-    'bg-gray-400 text-gray-300 opacity-50': disabled,
+    'bg-gray-300 text-gray-400': disabled,
     'opacity-75 pointer-events-none': loading,
     'px-2 py-1  text-xs': size === 'sm',
     'px-3 py-1 text-md': size === 'md',
@@ -39,7 +39,7 @@ export const Button = ({
     <button
       {...props}
       type={htmlType}
-      className={`rounded transition hover:opacity-75 ${modifyClassName}`}
+      className={`select-none rounded transition hover:opacity-75 ${modifyClassName}`}
       disabled={disabled || loading}
     >
       {loading ? <IconLoading /> : children}

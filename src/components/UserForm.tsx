@@ -18,6 +18,7 @@ const messages = {
   required: 'Required',
 }
 const validateSchema = z.object({
+  id: z.string(),
   name: z.string().min(1, { message: messages.required }),
   jobTitle: z.string().min(1, { message: messages.required }),
   email: z.string().min(1, { message: messages.required }).email(),
@@ -39,7 +40,11 @@ const UserForm = ({
   })
 
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit(onSubmit)} loading={loading}>
+      <FormItem label="ID" hidden>
+        <Input {...register('id')} />
+      </FormItem>
+
       <FormItem
         label="Name"
         hasError={errors.name != null}
@@ -64,12 +69,7 @@ const UserForm = ({
         <Input {...register('email')} />
       </FormItem>
 
-      <Button
-        type="primary"
-        htmlType="submit"
-        loading={loading}
-        disabled={disabled}
-      >
+      <Button type="primary" htmlType="submit" disabled={loading || disabled}>
         Submit
       </Button>
     </Form>
