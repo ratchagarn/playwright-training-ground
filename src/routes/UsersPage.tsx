@@ -10,7 +10,7 @@ import { Button } from 'components/Elements'
 
 import useCustomToast from 'hooks/useCustomToast'
 
-import { getRoutePath } from 'AppRoutes'
+import { getRoutePath } from 'helpers'
 
 import { usersAPI } from 'api/usersAPI'
 

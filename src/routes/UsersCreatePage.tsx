@@ -6,7 +6,7 @@ import UserForm from 'components/UserForm'
 
 import useCustomToast from 'hooks/useCustomToast'
 
-import { getRoutePath } from 'AppRoutes'
+import { getRoutePath } from 'helpers'
 
 import { usersAPI } from 'api/usersAPI'
 

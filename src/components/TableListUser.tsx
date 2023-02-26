@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 
 import { Button, Table, type TableProps } from 'components/Elements'
 
-import { getRoutePath } from 'AppRoutes'
+import { getRoutePath } from 'helpers'
 
 import type { User } from 'api/usersAPI'
 

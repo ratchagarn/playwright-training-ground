@@ -3,12 +3,10 @@ import {
   createBrowserRouter,
   RouterProvider,
   Link,
-  generatePath,
   type RouteObject,
 } from 'react-router-dom'
 import { QueryParamProvider } from 'use-query-params'
 import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6'
-import queryString from 'query-string'
 
 import DefaultLayout from 'layouts/DefaultLayout'
 
@@ -17,13 +15,13 @@ import UsersPage from 'routes/UsersPage'
 import UserCreatePage from 'routes/UsersCreatePage'
 import UsersUpdatePage from 'routes/UsersUpdatePage'
 
-import { keyMirror } from 'helpers/keyMirror'
+import { keyMirror } from 'helpers'
 
 const pagePathList = ['/', '/users', '/users/:id', '/users/create'] as const
 
 export const pagePath = keyMirror(pagePathList)
 
-type PagePathName = keyof typeof pagePath
+export type PagePathName = keyof typeof pagePath
 
 const AppRoutes = () => {
   const pages: RouteObject[] = useMemo(
@@ -76,20 +74,3 @@ const AppRoutes = () => {
 }
 
 export default AppRoutes
-
-interface GetRoutePathOptions {
-  params?: { id: string | null }
-  query?: Record<string, string | number | string[] | number[]>
-}
-
-export const getRoutePath = (
-  key: PagePathName,
-  options?: GetRoutePathOptions
-) => {
-  const { params, query } = options ?? {}
-  const qs = query ? queryString.stringify(query) : null
-
-  const destination = generatePath(pagePath[key], params)
-
-  return qs ? `${destination}?${qs}` : destination
-}
