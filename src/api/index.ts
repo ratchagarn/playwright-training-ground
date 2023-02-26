@@ -12,7 +12,7 @@ export const wait = (ms?: number) =>
     setTimeout(resolve, ms ?? +faker.random.numeric(3) + 50)
   })
 
-export const withWait = <T = any>(
+export const withDelay = <T = any>(
   request: Promise<AxiosResponse<T, any>>,
   ms?: number
 ) =>
