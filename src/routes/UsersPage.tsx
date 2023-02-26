@@ -15,7 +15,7 @@ import { getRoutePath } from 'AppRoutes'
 import { usersAPI } from 'api/usersAPI'
 
 const UsersPage = () => {
-  const [deletingID, setDeletingID] = useState<string>()
+  const [deletingID, setDeletingID] = useState<number>()
   const { toast, toastConfirm } = useCustomToast()
 
   const query = useQuery({
@@ -28,8 +28,10 @@ const UsersPage = () => {
       toast.error('Cannot delete user')
     },
     onSuccess() {
-      toast.success('Delete user succeed')
       query.refetch()
+        .then(() => {
+          toast.success('Delete user succeed')
+        })
     },
   })
 

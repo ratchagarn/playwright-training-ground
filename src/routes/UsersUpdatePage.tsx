@@ -12,14 +12,14 @@ import { getRoutePath } from 'AppRoutes'
 import { usersAPI } from 'api/usersAPI'
 
 const UsersUpdatePage = () => {
-  const params = useParams<{ id: string }>()
+  const params = useParams() as { id: string }
   const navigate = useNavigate()
 
   const { toast } = useCustomToast()
 
   const query = useQuery({
     queryKey: ['getUserByID', params.id],
-    queryFn: () => usersAPI.readByID(params.id as string),
+    queryFn: () => usersAPI.readByID(+params.id),
   })
 
   const updateUserByID = useMutation(usersAPI.updateByID, {
