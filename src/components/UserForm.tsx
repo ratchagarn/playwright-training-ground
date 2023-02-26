@@ -18,7 +18,7 @@ const messages = {
   required: 'Required',
 }
 const validateSchema = z.object({
-  id: z.string(),
+  id: z.number(),
   name: z.string().min(1, { message: messages.required }),
   jobTitle: z.string().min(1, { message: messages.required }),
   email: z.string().min(1, { message: messages.required }).email(),

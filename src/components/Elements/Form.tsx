@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLProps } from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 
 import { Spin } from 'components/Elements'
 
@@ -31,14 +31,14 @@ export const FormItem = ({
   hidden = false,
   children,
 }: FormItemProps) => {
-  const containerClassName = classNames('mb-4', {
+  const containerClassName = clsx('mb-4', {
     hidden,
   })
 
-  const childClassName = classNames('mt-1', {
+  const childClassName = clsx('mt-1', {
     'text-red-400 [&>*]:border-red-400': hasError,
   })
-  const helpClassName = classNames('text-sm', {
+  const helpClassName = clsx('text-sm', {
     'text-gray-400': !hasError,
     'text-red-400': hasError,
   })

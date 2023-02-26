@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 
 import { IconLoading } from './IconLoading'
 
@@ -14,7 +14,7 @@ export const Spin = ({
   tip = 'Loading...',
   children,
 }: SpinProps) => {
-  const className = classNames({
+  const className = clsx({
     relative: spinning,
   })
 

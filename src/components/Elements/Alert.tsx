@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 
 type AlertType = 'error' | 'info' | 'warning' | 'success'
 
@@ -10,7 +10,7 @@ interface AlertProps {
 }
 
 export const Alert = ({ type = 'error', className, message }: AlertProps) => {
-  const classNameByType = classNames(className, {
+  const classNameByType = clsx(className, {
     'border-red-500 bg-red-50 text-red-700': type === 'error',
     'border-blue-500 bg-blue-50 text-blue-700': type === 'info',
     'border-yellow-500 bg-yellow-50 text-yellow-700': type === 'warning',

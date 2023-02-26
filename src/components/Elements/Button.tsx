@@ -1,5 +1,5 @@
 import type { ReactNode, HTMLProps, ButtonHTMLAttributes } from 'react'
-import classNames from 'classnames'
+import { clsx } from 'clsx'
 
 import { IconLoading } from './IconLoading'
 
@@ -24,7 +24,7 @@ export const Button = ({
   children,
   ...props
 }: ButtonProps) => {
-  const modifyClassName = classNames(className, {
+  const modifyClassName = clsx(className, {
     'bg-gray-200': !disabled && type === 'default',
     'bg-blue-500 text-white': !disabled && type === 'primary',
     'bg-red-500 text-white': !disabled && type === 'danger',
