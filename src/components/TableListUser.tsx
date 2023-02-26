@@ -37,7 +37,11 @@ const TableListUser = ({ data, onDelete, deletingID }: TableListUserProps) => {
       align: 'center',
       width: 60,
       render: ({ id }) => (
-        <Link to={getRoutePath('usersUpdatePage', { params: { id } })}>
+        <Link
+          to={getRoutePath('/users/:id', {
+            params: { id: id.toString() },
+          })}
+        >
           <Button disabled={deletingID === id}>✎</Button>
         </Link>
       ),

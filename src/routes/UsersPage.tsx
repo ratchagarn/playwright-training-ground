@@ -28,10 +28,9 @@ const UsersPage = () => {
       toast.error('Cannot delete user')
     },
     onSuccess() {
-      query.refetch()
-        .then(() => {
-          toast.success('Delete user succeed')
-        })
+      query.refetch().then(() => {
+        toast.success('Delete user succeed')
+      })
     },
   })
 
@@ -41,7 +40,7 @@ const UsersPage = () => {
 
       <ActionBar
         extra={
-          <Link to={getRoutePath('usersCreatePage')}>
+          <Link to={getRoutePath('/users/create')}>
             <Button type="primary">Create New User</Button>
           </Link>
         }

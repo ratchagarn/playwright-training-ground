@@ -12,11 +12,11 @@ const DefaultLayout = () => {
     () => [
       {
         label: 'Home',
-        url: pagePath.index,
+        url: pagePath['/'],
       },
       {
         label: 'Users',
-        url: pagePath.users,
+        url: pagePath['/users'],
       },
     ],
     []

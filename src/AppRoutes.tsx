@@ -17,35 +17,34 @@ import UsersPage from 'routes/UsersPage'
 import UserCreatePage from 'routes/UsersCreatePage'
 import UsersUpdatePage from 'routes/UsersUpdatePage'
 
-export const pagePath = {
-  index: '/',
-  users: '/users',
-  usersCreatePage: '/users/create',
-  usersUpdatePage: '/users/:id',
-}
+import { keyMirror } from 'helpers/keyMirror'
+
+const pagePathList = ['/', '/users', '/users/:id', '/users/create'] as const
+
+export const pagePath = keyMirror(pagePathList)
 
 type PagePathName = keyof typeof pagePath
 
 const AppRoutes = () => {
-  const allPageRoutes: Record<PagePathName, RouteObject> = useMemo(
-    () => ({
-      index: {
+  const pages: RouteObject[] = useMemo(
+    () => [
+      {
         index: true,
         element: <IndexPage />,
       },
-      users: {
-        path: pagePath.users,
+      {
+        path: pagePath['/users'],
         element: <UsersPage />,
       },
-      usersCreatePage: {
-        path: pagePath.usersCreatePage,
+      {
+        path: pagePath['/users/create'],
         element: <UserCreatePage />,
       },
-      usersUpdatePage: {
-        path: pagePath.usersUpdatePage,
+      {
+        path: pagePath['/users/:id'],
         element: <UsersUpdatePage />,
       },
-    }),
+    ],
     []
   )
 
@@ -54,21 +53,23 @@ const AppRoutes = () => {
       createBrowserRouter([
         {
           path: '/',
-          element: <RootElement />,
+          element: (
+            <QueryParamProvider adapter={ReactRouter6Adapter}>
+              <DefaultLayout />
+            </QueryParamProvider>
+          ),
           errorElement: (
             <div className="flex h-screen flex-col items-center justify-center gap-4">
               <h1 className="text-xl font-bold">Page Not Found</h1>
-              <Link to={pagePath.index} className="text-blue-600 underline">
+              <Link to={pagePath['/']} className="text-blue-600 underline">
                 Back
               </Link>
             </div>
           ),
-          children: Object.keys(allPageRoutes).map(
-            (name) => allPageRoutes[name as PagePathName]
-          ),
+          children: pages,
         },
       ]),
-    [allPageRoutes]
+    [pages]
   )
 
   return <RouterProvider router={router} />
@@ -76,16 +77,8 @@ const AppRoutes = () => {
 
 export default AppRoutes
 
-function RootElement() {
-  return (
-    <QueryParamProvider adapter={ReactRouter6Adapter}>
-      <DefaultLayout />
-    </QueryParamProvider>
-  )
-}
-
 interface GetRoutePathOptions {
-  params?: Record<string, string | number>
+  params?: { id: string | null }
   query?: Record<string, string | number | string[] | number[]>
 }
 

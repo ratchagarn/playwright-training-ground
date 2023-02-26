@@ -28,7 +28,7 @@ const UsersUpdatePage = () => {
     },
     onSuccess() {
       toast.success('Update user succeed')
-      navigate(getRoutePath('users'))
+      navigate(getRoutePath('/users'))
     },
   })
 

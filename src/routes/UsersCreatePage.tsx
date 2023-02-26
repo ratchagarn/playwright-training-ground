@@ -20,7 +20,7 @@ const UsersCreatePage = () => {
     },
     onSuccess() {
       toast.success('Create user succeed')
-      navigate(getRoutePath('users'))
+      navigate(getRoutePath('/users'))
     },
   })
 
