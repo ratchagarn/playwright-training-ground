@@ -8,7 +8,7 @@ import type { User } from 'api/usersAPI'
 
 interface TableListUserProps {
   data?: User[]
-  onDelete?: (id: string) => void
+  onDelete?: (id: number) => void
   deletingID?: User['id']
 }
 

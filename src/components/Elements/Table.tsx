@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 
-interface TableColumn<T extends any> {
+type DefaultRecordType = Record<string, any>
+
+interface TableColumn<T extends DefaultRecordType> {
   key: string
   title: string
   render(record: T): ReactNode
@@ -8,13 +10,13 @@ interface TableColumn<T extends any> {
   align?: 'left' | 'center' | 'right'
 }
 
-export interface TableProps<T extends any> {
+export interface TableProps<T extends DefaultRecordType> {
   dataSource?: T[]
   rowKey?: string
   columns: TableColumn<T>[]
 }
 
-export const Table = <T extends { id: string }>({
+export const Table = <T extends DefaultRecordType>({
   dataSource = [],
   rowKey = 'id',
   columns,
@@ -46,8 +48,7 @@ export const Table = <T extends { id: string }>({
           ) : (
             dataSource.map((item) => (
               <tr
-                // TODO: Remove as `id`
-                key={item[rowKey as 'id']}
+                key={item[rowKey]}
                 className="transition-all even:bg-gray-100 hover:bg-blue-100"
               >
                 {columns.map((column) => (
