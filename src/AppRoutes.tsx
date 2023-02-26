@@ -68,7 +68,7 @@ const AppRoutes = () => {
           ),
         },
       ]),
-    []
+    [allPageRoutes]
   )
 
   return <RouterProvider router={router} />

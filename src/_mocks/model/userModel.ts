@@ -2,7 +2,7 @@ import { factory, primaryKey } from '@mswjs/data'
 import { faker } from '@faker-js/faker'
 
 const db = factory({
-  ['api/user']: {
+  'api/user': {
     id: primaryKey(Number),
     name: String,
     jobTitle: String,
