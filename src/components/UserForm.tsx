@@ -2,7 +2,9 @@ import { useForm, type SubmitHandler } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 
-import { Form, FormItem, Input, Button } from 'components/Elements'
+import { Form, FormItem, Input, Button, Select } from 'components/Elements'
+
+import { jobTitleList } from '_mocks/model/userModel'
 
 import type { User } from 'api/usersAPI'
 
@@ -55,11 +57,14 @@ const UserForm = ({
       </FormItem>
 
       <FormItem
-        label="Position"
+        label="Job Title"
         hasError={errors.jobTitle != null}
         help={errors.jobTitle?.message}
       >
-        <Input {...register('jobTitle')} />
+        <Select
+          options={jobTitleList.map((item) => ({ label: item, value: item }))}
+          {...register('jobTitle')}
+        />
       </FormItem>
 
       <FormItem

@@ -1,6 +1,13 @@
 import { factory, primaryKey } from '@mswjs/data'
 import { faker } from '@faker-js/faker'
 
+export const jobTitleList = [
+  'Manager',
+  'Corporate Intranet Director',
+  'International Quality Developer',
+  'Product Mobility Consultant',
+]
+
 const db = factory({
   'api/user': {
     id: primaryKey(Number),
@@ -23,7 +30,7 @@ for (let i = 1; i <= 10; i++) {
   userModel.create({
     id: i + 1,
     name: faker.name.fullName(),
-    jobTitle: faker.name.jobTitle(),
+    jobTitle: faker.helpers.shuffle(jobTitleList.slice(0))[0],
     email: faker.internet.email(),
   })
 }
