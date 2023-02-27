@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@tanstack/react-query'
+import { AiOutlinePlus } from 'react-icons/ai'
 
 import PageTitle from 'components/PageTitle'
 import ActionBar from 'components/ActionBar'
@@ -41,7 +42,9 @@ const UsersPage = () => {
       <ActionBar
         extra={
           <Link to={getRoutePath('/users/create')}>
-            <Button type="primary">Create New User</Button>
+            <Button type="primary" icon={<AiOutlinePlus />}>
+              Create New User
+            </Button>
           </Link>
         }
       />

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai'
 
 import { Button, Table, type TableProps } from 'components/Elements'
 
@@ -42,7 +43,9 @@ const TableListUser = ({ data, onDelete, deletingID }: TableListUserProps) => {
             params: { id: id.toString() },
           })}
         >
-          <Button disabled={deletingID === id}>✎</Button>
+          <Button disabled={deletingID === id}>
+            <AiOutlineEdit />
+          </Button>
         </Link>
       ),
     },
@@ -57,7 +60,7 @@ const TableListUser = ({ data, onDelete, deletingID }: TableListUserProps) => {
           loading={deletingID === record.id}
           onClick={() => onDelete?.(record.id)}
         >
-          ✕
+          <AiOutlineDelete />
         </Button>
       ),
     },

@@ -10,6 +10,7 @@ interface ButtonProps extends Omit<HTMLProps<HTMLButtonElement>, 'size'> {
   type?: ButtonType
   htmlType?: ButtonHTMLAttributes<HTMLButtonElement>['type']
   size?: ButtonSize
+  icon?: ReactNode
   loading?: boolean
   children?: ReactNode
 }
@@ -18,6 +19,7 @@ export const Button = ({
   type = 'default',
   htmlType,
   size = 'md',
+  icon,
   className,
   disabled = false,
   loading = false,
@@ -42,7 +44,15 @@ export const Button = ({
       className={`select-none rounded transition hover:opacity-75 ${modifyClassName}`}
       disabled={disabled || loading}
     >
-      {loading ? <IconLoading /> : children}
+      <span className="inline-flex items-center justify-center gap-1">
+        {loading ? (
+          <IconLoading />
+        ) : (
+          <>
+            {icon} {children}
+          </>
+        )}
+      </span>
     </button>
   )
 }
