@@ -1,18 +1,21 @@
-import request, { withDelay } from './index'
+import request, { withForReactQuery } from './index'
 
 import type { User } from '_mocks/model/userModel'
 
 export { User }
 
-export const usersAPI = {
-  create: (data: User) => withDelay<User>(request.post('/api/users', data)),
+const path = '/api/users'
 
-  readAll: () => withDelay<User[]>(request.get('/api/users')),
-  readByID: (id: number) => withDelay<User>(request.get(`/api/users/${id}`)),
+export const usersAPI = {
+  create: (data: User) => withForReactQuery<User>(request.post(path, data)),
+
+  readAll: () => withForReactQuery<User[]>(request.get(path)),
+  readByID: (id: number) =>
+    withForReactQuery<User>(request.get(`${path}/${id}`)),
 
   updateByID: (data: User) =>
-    withDelay<User>(request.put(`/api/users/${data.id}`, data)),
+    withForReactQuery<User>(request.put(`${path}/${data.id}`, data)),
 
   deleteByID: (id: number) =>
-    withDelay<User>(request.delete(`/api/users/${id}`)),
+    withForReactQuery<User>(request.delete(`${path}/${id}`)),
 }
