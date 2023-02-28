@@ -7,7 +7,7 @@ const IndexPage = () => {
       <PageTitle>Welcome to Playwright Training Ground</PageTitle>
 
       <p className="mb-4">
-        With this you will learn how to test website with Playwright in many way
+        With this, you will learn how to test websites with Playwright in many different ways.
       </p>
 
       <SectionTitle>Topic</SectionTitle>
