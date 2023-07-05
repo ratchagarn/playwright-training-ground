@@ -28,3 +28,6 @@ dist-ssr
 
 tests
 public/mockServiceWorker.js
+/test-results/
+/playwright-report/
+/playwright/.cache/
