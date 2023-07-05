@@ -50,8 +50,8 @@ export default defineConfig({
   outputDir: 'test-results',
 
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npm run dev',
-    port: 3001,
-  },
+  // webServer: {
+  //   command: 'npm run dev',
+  //   port: 3001,
+  // },
 })

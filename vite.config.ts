@@ -22,6 +22,8 @@ const config = ({ mode }: ConfigEnv) => {
     ],
     server: {
       port: env.VITE_APP_SERVER_PORT,
+      open: true,
+      host: true,
     },
   })
 }

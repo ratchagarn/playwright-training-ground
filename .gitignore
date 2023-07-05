@@ -26,7 +26,6 @@ dist-ssr
 /playwright-report/
 /playwright/.cache/
 
-tests
 public/mockServiceWorker.js
 /test-results/
 /playwright-report/
