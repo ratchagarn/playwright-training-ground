@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 
-import { pagePath } from 'AppRoutes'
+import { pagePath } from 'App'
 
 import logo from 'assets/playwright-logo.svg'
 

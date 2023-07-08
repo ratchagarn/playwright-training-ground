@@ -1,7 +1,7 @@
 import { generatePath } from 'react-router-dom'
 import queryString from 'query-string'
 
-import { pagePath, type PagePathName } from 'AppRoutes'
+import { pagePath, type PagePathName } from 'App'
 
 interface GetRoutePathOptions {
   params?: { id: string | null }
