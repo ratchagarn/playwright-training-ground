@@ -21,6 +21,10 @@ import UsersUpdatePage from 'routes/UsersUpdatePage'
 
 import { keyMirror } from 'helpers'
 
+import { worker } from './_mocks/browser'
+
+worker.start()
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {

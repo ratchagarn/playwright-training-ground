@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 
-import App from './App'
+const app =
+  import.meta.env.VITE_APP_TYPE === 'antd'
+    ? await import('./AppAntd')
+    : await import('./App')
 
-import { worker } from './_mocks/browser'
-
-worker.start()
+const App = app.default
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

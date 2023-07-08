@@ -6,7 +6,7 @@ test.describe('At Home Page', () => {
   useStorageStateAuth()
 
   test('has title', async ({ page }) => {
-    await page.goto(process.env.PLAYWRIGHT_TEST_URL)
+    await page.goto(process.env.PLAYWRIGHT_BASE_URL)
 
     await page.evaluate(() => {
       window.localStorage.setItem('auth', 'en')
