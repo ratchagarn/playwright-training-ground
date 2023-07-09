@@ -6,13 +6,27 @@ interface DateValue {
   name: string
   value: string
 }
+
 type DateRangePickerValues = [DateValue, DateValue]
+
+interface Options {
+  /** Base path for assets directory, use for `setInputFiles` */
+  assetsBasePath?: string
+}
 
 export class AntdFormHandler {
   private readonly form: Locator
+  private readonly options: Options
 
-  constructor(public readonly page: Page, readonly formSelector: string) {
+  constructor(
+    public readonly page: Page,
+    readonly formSelector: string,
+    readonly newOptions?: Options
+  ) {
     this.form = this.page.locator(formSelector)
+    this.options = Object.assign({}, newOptions, {
+      assetsBasePath: './tests/assets',
+    } as Options)
   }
 
   private toggleCheck(value: boolean) {
@@ -45,6 +59,21 @@ export class AntdFormHandler {
     await end.press(ENTER)
   }
 
+  async selectSetOption(label: string, optionLabel: string) {
+    const target = this.form.getByLabel(label)
+
+    await target.click()
+    /**
+     * Required `Select` allow to search option item by label
+     */
+    await target.fill(optionLabel)
+
+    await this.page
+      .locator('.ant-select-dropdown:visible')
+      .getByTitle(optionLabel, { exact: true })
+      .click()
+  }
+
   async toggleCheckbox(name: string, value = true) {
     await this.form
       .getByRole('checkbox', { name, exact: true })
@@ -59,6 +88,12 @@ export class AntdFormHandler {
 
   async toggleSwitch(label: string, value = true) {
     await this.form.getByLabel(label)[this.toggleCheck(value)]()
+  }
+
+  async attachUploadDraggerFile(label: string, file: string) {
+    await this.form
+      .getByLabel(label)
+      .setInputFiles(`${this.options.assetsBasePath}/${file}`)
   }
 
   async submit(name: string) {

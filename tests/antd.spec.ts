@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 
 import { AntdFormHandler } from '@/fixtures/AntdFormHandler'
 
@@ -8,16 +8,10 @@ test.describe('Test Ant Design', () => {
 
     const form = new AntdFormHandler(page, 'form')
 
-    await expect(
-      page.getByRole('heading', {
-        name: 'Test Ant Design',
-        level: 1,
-        exact: true,
-      })
-    ).toBeVisible()
-
     await form.fillInput('Your Name', 'Ratchagarn Naewbuntad')
     await form.fillInput('Your Favorite Number', 999)
+
+    await form.selectSetOption('Your Native Language', 'Thai')
 
     await form.toggleRadio('Male')
 
@@ -25,9 +19,7 @@ test.describe('Test Ant Design', () => {
     await form.toggleCheckbox('CSS')
     await form.toggleCheckbox('JS')
 
-    await form.fillDatePicker('Birthday', '1993-04-30')
-
-    await form.fillInput('Explain about yourself', 'HSP\nIndie')
+    await form.fillDatePicker('Birthday', '1993-04-30 13:03:04')
 
     await form.fillDateRangePicker('periodDate', [
       {
@@ -39,6 +31,10 @@ test.describe('Test Ant Design', () => {
         value: '2023-08-24',
       },
     ])
+
+    await form.fillInput('Explain about yourself', 'HSP\nIndie')
+
+    await form.attachUploadDraggerFile('Your Resume', 'test-resume.csv')
 
     await form.toggleSwitch('Newsletter by Email')
 

@@ -18,6 +18,8 @@ import {
 import 'antd/dist/reset.css'
 import styled, { createGlobalStyle } from 'styled-components'
 
+const range = [...Array(100).keys()]
+
 interface FormValues {
   fullname?: string
   favoriteNumber?: number
@@ -84,6 +86,7 @@ const AppAntd = () => {
                       (option?.label ?? '').includes(input)
                     }
                     options={[
+                      ...range.map((n) => ({ label: n.toString(), value: n })),
                       {
                         label: 'English',
                         value: 'en_US',
@@ -132,7 +135,7 @@ const AppAntd = () => {
               </Col>
               <Col span={8}>
                 <Form.Item label="Birthday" name="birthday">
-                  <DatePicker style={{ width: '100%' }} />
+                  <DatePicker showTime style={{ width: '100%' }} />
                 </Form.Item>
 
                 <Form.Item label="Period Date" name="periodDate">
