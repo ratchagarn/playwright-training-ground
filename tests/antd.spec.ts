@@ -12,12 +12,7 @@ test.describe('Test Ant Design', () => {
     await form.fillInput('Your Favorite Number', 999)
 
     await form.selectSetOption('Your Native Language', 'Thai')
-
-    await form.toggleRadio('Male')
-
-    await form.toggleCheckbox('HTML')
-    await form.toggleCheckbox('CSS')
-    await form.toggleCheckbox('JS')
+    await form.selectSetOption('Your Avatar', 'Cat')
 
     await form.fillDatePicker('Birthday', '1993-04-30 13:03:04')
 
@@ -31,6 +26,12 @@ test.describe('Test Ant Design', () => {
         value: '2023-08-24',
       },
     ])
+
+    await form.toggleRadio('Male')
+
+    await form.toggleCheckbox('HTML')
+    await form.toggleCheckbox('CSS')
+    await form.toggleCheckbox('JS')
 
     await form.fillInput('Explain about yourself', 'HSP\nIndie')
 

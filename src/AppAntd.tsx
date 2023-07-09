@@ -1,4 +1,9 @@
-import { useState } from 'react'
+import {
+  useState,
+  isValidElement,
+  type ReactNode,
+  type ReactElement,
+} from 'react'
 import {
   Form,
   Row,
@@ -13,6 +18,7 @@ import {
   Upload,
   Switch,
   Modal,
+  Avatar,
   Space,
 } from 'antd'
 import 'antd/dist/reset.css'
@@ -23,10 +29,12 @@ const range = [...Array(100).keys()]
 interface FormValues {
   fullname?: string
   favoriteNumber?: number
-  gender?: string
-  skills?: string[]
+  language?: string
+  avatar?: string
   birthday?: string
   periodDate?: string
+  gender?: string
+  skills?: string[]
   yourself?: string
   resume?: any[]
   needNewsletterByEmail?: boolean
@@ -107,6 +115,56 @@ const AppAntd = () => {
                   />
                 </Form.Item>
               </Col>
+              <Col span={8}>
+                <Form.Item label="Your Avatar" name="avatar">
+                  <Select
+                    showSearch
+                    placeholder="Select image that you like"
+                    optionFilterProp="children"
+                    filterOption={(input, option) =>
+                      (
+                        readReactNodeProps(option?.label)?.children[1] ?? ''
+                      ).includes(input)
+                    }
+                    options={[
+                      {
+                        label: (
+                          <div>
+                            <Avatar src="/images/bear.png" size={24} /> Bear
+                          </div>
+                        ),
+                        value: 'bear',
+                      },
+                      {
+                        label: (
+                          <div>
+                            <Avatar src="/images/cat.png" size={24} /> Cat
+                          </div>
+                        ),
+                        value: 'cat',
+                      },
+                      {
+                        label: (
+                          <div>
+                            <Avatar src="/images/dog.png" size={24} /> Dog
+                          </div>
+                        ),
+                        value: 'dog',
+                      },
+                    ]}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item label="Birthday" name="birthday">
+                  <DatePicker showTime style={{ width: '100%' }} />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
+                <Form.Item label="Period Date" name="periodDate">
+                  <DatePicker.RangePicker data-testid="periodDate" />
+                </Form.Item>
+              </Col>
             </Row>
 
             <Row gutter={24}>
@@ -131,15 +189,6 @@ const AppAntd = () => {
                       <Checkbox value="GO">GO</Checkbox>
                     </Space>
                   </Checkbox.Group>
-                </Form.Item>
-              </Col>
-              <Col span={8}>
-                <Form.Item label="Birthday" name="birthday">
-                  <DatePicker showTime style={{ width: '100%' }} />
-                </Form.Item>
-
-                <Form.Item label="Period Date" name="periodDate">
-                  <DatePicker.RangePicker data-testid="periodDate" />
                 </Form.Item>
               </Col>
             </Row>
@@ -215,6 +264,15 @@ const AppAntd = () => {
 }
 
 export default AppAntd
+
+function readReactNodeProps(node: ReactNode) {
+  return isValidElement(node)
+    ? ((node as ReactElement).props as {
+        label: string
+        children: [any, string]
+      })
+    : null
+}
 
 async function delay(ms = 250) {
   return new Promise((resolve) => {

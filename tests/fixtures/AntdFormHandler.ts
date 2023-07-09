@@ -70,7 +70,7 @@ export class AntdFormHandler {
 
     await this.page
       .locator('.ant-select-dropdown:visible')
-      .getByTitle(optionLabel, { exact: true })
+      .getByText(optionLabel, { exact: true })
       .click()
   }
 
