@@ -25,6 +25,8 @@ interface FormValues {
   skills?: string[]
   birthday?: string
   periodDate?: string
+  yourself?: string
+  resume?: any[]
   needNewsletterByEmail?: boolean
 }
 
@@ -134,13 +136,21 @@ const AppAntd = () => {
                 </Form.Item>
 
                 <Form.Item label="Period Date" name="periodDate">
-                  <DatePicker.RangePicker />
+                  <DatePicker.RangePicker data-testid="periodDate" />
                 </Form.Item>
               </Col>
             </Row>
 
             <Row gutter={24}>
-              <Col span={16}>
+              <Col span={8}>
+                <Form.Item label="Explain about yourself" name="yourself">
+                  <Input.TextArea
+                    placeholder="What is your personality"
+                    style={{ resize: 'none' }}
+                  />
+                </Form.Item>
+              </Col>
+              <Col span={8}>
                 <Form.Item
                   label="Your Resume"
                   name="resume"

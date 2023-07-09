@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/fixtures/*": ["fixtures/*"],
       "@/helpers/*": ["helpers/*"]
     }
   }
