@@ -29,8 +29,6 @@ export class AntdFormHandler {
   ) {
     this.form = this.page.locator(formSelector)
     this.options = Object.assign({}, defaultOptions, newOptions)
-
-    console.log(this.options)
   }
 
   private toggleCheck(value: boolean) {
