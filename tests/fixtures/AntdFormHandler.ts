@@ -14,6 +14,10 @@ interface Options {
   assetsBasePath?: string
 }
 
+const defaultOptions: Options = {
+  assetsBasePath: './tests/assets',
+}
+
 export class AntdFormHandler {
   private readonly form: Locator
   private readonly options: Options
@@ -24,9 +28,9 @@ export class AntdFormHandler {
     readonly newOptions?: Options
   ) {
     this.form = this.page.locator(formSelector)
-    this.options = Object.assign({}, newOptions, {
-      assetsBasePath: './tests/assets',
-    } as Options)
+    this.options = Object.assign({}, defaultOptions, newOptions)
+
+    console.log(this.options)
   }
 
   private toggleCheck(value: boolean) {
